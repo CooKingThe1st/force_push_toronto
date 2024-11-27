@@ -104,10 +104,17 @@ class BulletPusher(pyb_utils.Robot):
     def __init__(self, urdf_path, position, mu=1):
         # here we use a fixed base so that the "base" just stays at the world
         # frame origin while the link moves via two prismatic joints
+
+            # same with my approach in Dat-thesis
+            # basically an omni-robot 
+
+            # first is pose, second is orientation
+            # maybe there is a heading, still checking
+
         uid = pyb.loadURDF(urdf_path, [0, 0, 0], [0, 0, 0, 1], useFixedBase=True)
         super().__init__(uid)
         assert self.num_total_joints == 2
-        assert self.tool_idx == 1
+        assert self.tool_idx == 1 # the pusher link in the urdf
 
         # zero friction on the floor, variable contact friction
         pyb.changeDynamics(self.uid, -1, lateralFriction=0)
@@ -139,6 +146,10 @@ class BulletPusher(pyb_utils.Robot):
         self.command_velocity([0, 0])
         self.reset_joint_configuration(self.pos_init)
 
+
+
+
+# maybe include non-convex slider here
 
 class BulletSquareSlider(BulletBody):
     """Square slider"""
@@ -178,6 +189,8 @@ class BulletCircleSlider(BulletBody):
         super().__init__(
             position, collision_uid, visual_uid, mass=mass, orientation=orientation
         )
+
+
 
 
 class BulletBlock(BulletBody):

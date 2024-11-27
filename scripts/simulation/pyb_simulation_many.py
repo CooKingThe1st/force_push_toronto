@@ -26,7 +26,7 @@ CTRL_FREQ = 100
 CTRL_STEP = SIM_FREQ // CTRL_FREQ
 
 # seconds
-DURATION = 300
+DURATION = 50
 
 # friction
 # slider μ is set to 1
@@ -84,7 +84,7 @@ s0s = [-0.4, 0, 0.4]
 # time constant for force filter
 FILTER_TIME_CONSTANT = 0.05
 
-START_AT_TRIAL = 0
+START_AT_TRIAL = 1
 
 FILM_FACE_SWITCHING_EXAMPLE = False
 
